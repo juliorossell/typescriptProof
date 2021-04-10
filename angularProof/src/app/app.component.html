@@ -1,0 +1,26 @@
+
+<form [formGroup]="shoppingCardForm" (keyup.enter)="addItem()" class="mb-2">
+  <input type="text" placeholder="Ingresa articulo" formControlName="name">
+  <button (click) ="addItem()" class="btn btn-primary btn-green">Añadir</button>
+</form>
+
+
+<div *ngIf="myShoppingCard.items && myShoppingCard.items.length; else templateEmpty">
+  <h4>Listado de artículos</h4>
+  <div *ngFor="let item of myShoppingCard.items">
+    <span class="">{{item.name}}</span>
+    <span ><input type="checkbox"  (change) ="toCompleted($event.target.checked, item.id)"></span>
+    <span > <a href="javascript:void(0)" (click)="deleteItem(item.id)">x</a> </span>
+  </div>
+</div>
+<br>
+
+<ng-template #templateEmpty>
+  <div class="mb-2">
+    MI carrito esta vacio
+  </div>
+</ng-template>
+
+
+
+
