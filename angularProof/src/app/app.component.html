@@ -1,7 +1,7 @@
 
-<form [formGroup]="shoppingCardForm" (keyup.enter)="addItem()" class="mb-2">
+<form [formGroup]="shoppingCardForm" (keyup.enter)="add()" class="mb-2">
   <input type="text" placeholder="Ingresa articulo" formControlName="name">
-  <button (click) ="addItem()" class="btn btn-primary btn-green">Añadir</button>
+  <button (click) ="add()" class="btn btn-primary btn-green">Añadir</button>
 </form>
 
 

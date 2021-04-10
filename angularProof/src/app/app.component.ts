@@ -18,7 +18,7 @@ export class AppComponent {
     this.createForm();
   }
 
-  addItem() {
+  add() {
     const nameControl = this.shoppingCardForm.get('name');
     nameControl.markAsTouched();
     if (this.shoppingCardForm.valid) {

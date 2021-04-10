@@ -16,7 +16,6 @@ export class ShoppingCart {
   addItem(item: Item): void {
       //TODO: validar si el articulo ya existe, para aumentar la cantidad.
       this.items.push(item);
-      console.log(this.items);
   }
 
   editItemById(id: number, newItem: Item): void {
@@ -42,7 +41,6 @@ export class ShoppingCart {
       const findElement = this.items.findIndex(x => x.id === id);
       if (~findElement) {
           this.items[findElement].status = IsCompleted ? StatusEnum.IsCompleted : StatusEnum.IsPending;
-          console.log(this.items);
       } else {
           throw new Error(itemNoFound);
       }
