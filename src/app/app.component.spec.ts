@@ -58,12 +58,7 @@ describe('AppComponent', () => {
     expect(nameControl.touched).toBeTruthy();
     nameControl.setValue('articulo');
     expect(form.valid).toBeTruthy();
-    const item: Item = {
-      id: component.myShoppingCard.getLength() + 1,
-      name: nameControl.value,
-      status: StatusEnum.IsPending,
-    }
-    component.myShoppingCard.addItem(item);
+    component.add();
     let result = component.myShoppingCard.getLength();
     expect(result).toBeGreaterThan(0);
     nameControl.reset();
@@ -82,6 +77,17 @@ describe('AppComponent', () => {
     const item = {id: 3, name: 'pelota', status : StatusEnum.IsPending, price: 10, count: 1 };
     component.myShoppingCard.addItem(item);
     component.toCompleted(true, 3);
+    let result = component.myShoppingCard.getLength();
+    expect(result).toBeGreaterThan(0);
+  });
+
+
+  it('should sortList', () => {
+    const newItem = {id: 1111, name: 'pelota editada', status : StatusEnum.IsPending, price: 10, count: 1 };
+    component.myShoppingCard.addItem(newItem);
+    const newItem2 = {id: 1111, name: 'pelota', status : StatusEnum.IsPending, price: 10, count: 1 };
+    component.myShoppingCard.addItem(newItem2);
+    component.sortListByProperty('name');
     let result = component.myShoppingCard.getLength();
     expect(result).toBeGreaterThan(0);
   });

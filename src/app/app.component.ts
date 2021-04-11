@@ -41,6 +41,10 @@ export class AppComponent {
     this.myShoppingCard.toCompletedByItem(IsCompleted, id);
   }
 
+  sortListByProperty(property: string) {
+    this.myShoppingCard.sortListByProperty(property);
+  }
+
   private createForm() {
     this.shoppingCardForm = this.fb.group({
       name: [null, Validators.required],

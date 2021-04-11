@@ -67,9 +67,8 @@ describe('shoppingcart', function() {
     const secondItem = {id: 2, name: 'celular', status : StatusEnum.IsCompleted, price: 100, count: 1 };
     shoppingCart.addItem(item);
     shoppingCart.addItem(secondItem);
+    shoppingCart.sortListByProperty('name');
     let result = shoppingCart.getLength();
     expect(result).toBeGreaterThan(0);
-    const listSortered = shoppingCart.sortListByProperty('price');
-    expect(listSortered.length).toBeGreaterThan(0);
   });
 });

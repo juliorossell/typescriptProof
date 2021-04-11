@@ -46,9 +46,8 @@ export class ShoppingCart {
       }
   }
 
-  sortListByProperty(property: string): Item[] {
-      const copyItems = [...this.items];
-      copyItems.sort((a, b) => {
+  sortListByProperty(property: string): void {
+      this.items.sort((a, b) => {
         if (a[property] < b[property]) {
           return -1;
         }
@@ -57,6 +56,5 @@ export class ShoppingCart {
         }
         return 0;
       });
-      return copyItems;
     }
 }
