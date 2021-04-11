@@ -31,7 +31,6 @@ export class ShoppingCart {
       const findElement = this.items.findIndex(x => x.id === id);
       if (~findElement) {
           this.items.splice(findElement, 1);
-          console.log(this.items);
       } else {
           throw new Error(itemNoFound);
       }
@@ -46,9 +45,9 @@ export class ShoppingCart {
       }
   }
 
-  sortListByProperty(property: string): Item[] {
-      const copyItems = [...this.items];
-      copyItems.sort((a, b) => {
+  sortListByProperty(property: string): void {
+      // const copyItems = [...this.items];
+      this.items.sort((a, b) => {
         if (a[property] < b[property]) {
           return -1;
         }
@@ -57,6 +56,6 @@ export class ShoppingCart {
         }
         return 0;
       });
-      return copyItems;
+      // return copyItems;
     }
 }

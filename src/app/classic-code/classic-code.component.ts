@@ -5,11 +5,11 @@ import { StatusEnum } from 'src/shared/enums/Status';
 import { IShoppingCart, Item } from 'src/shared/interfaces/Item';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-classic-code',
+  templateUrl: './classic-code.component.html',
+  styleUrls: ['./classic-code.component.scss']
 })
-export class AppComponent {
+export class ClassicCodeComponent {
   myShoppingCard: IShoppingCart;
   shoppingCardForm: FormGroup;
   isCompleted = StatusEnum.IsCompleted;
@@ -39,6 +39,10 @@ export class AppComponent {
 
   toCompleted(IsCompleted: boolean,id: number) {
     this.myShoppingCard.toCompletedByItem(IsCompleted, id);
+  }
+
+  sortListByProperty(property: string) {
+    this.myShoppingCard.sortListByProperty(property);
   }
 
   private createForm() {

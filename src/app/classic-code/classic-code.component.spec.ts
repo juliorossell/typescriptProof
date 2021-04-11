@@ -1,25 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AppComponent } from './app.component';
 import { Item } from 'src/shared/interfaces/Item';
 import { StatusEnum } from 'src/shared/enums/Status';
 import { ShoppingCart } from 'src/shared/classes/shoppingcart';
+import { ClassicCodeComponent } from './classic-code.component';
 
-describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+describe('ClassicCodeComponent', () => {
+  let component: ClassicCodeComponent;
+  let fixture: ComponentFixture<ClassicCodeComponent>;
    const formBuilder: FormBuilder = new FormBuilder();
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, FormsModule],
-      declarations: [AppComponent],
+      declarations: [ClassicCodeComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: FormBuilder, useValue: formBuilder }
     ]
     });
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(ClassicCodeComponent);
     component = fixture.componentInstance;
     component.myShoppingCard = new ShoppingCart();
     component.shoppingCardForm = formBuilder.group({
@@ -58,12 +58,7 @@ describe('AppComponent', () => {
     expect(nameControl.touched).toBeTruthy();
     nameControl.setValue('articulo');
     expect(form.valid).toBeTruthy();
-    const item: Item = {
-      id: component.myShoppingCard.getLength() + 1,
-      name: nameControl.value,
-      status: StatusEnum.IsPending,
-    }
-    component.myShoppingCard.addItem(item);
+    component.add();
     let result = component.myShoppingCard.getLength();
     expect(result).toBeGreaterThan(0);
     nameControl.reset();
@@ -82,6 +77,17 @@ describe('AppComponent', () => {
     const item = {id: 3, name: 'pelota', status : StatusEnum.IsPending, price: 10, count: 1 };
     component.myShoppingCard.addItem(item);
     component.toCompleted(true, 3);
+    let result = component.myShoppingCard.getLength();
+    expect(result).toBeGreaterThan(0);
+  });
+
+
+  it('should sortList', () => {
+    const newItem = {id: 1111, name: 'pelota editada', status : StatusEnum.IsPending, price: 10, count: 1 };
+    component.myShoppingCard.addItem(newItem);
+    const newItem2 = {id: 1111, name: 'pelota', status : StatusEnum.IsPending, price: 10, count: 1 };
+    component.myShoppingCard.addItem(newItem2);
+    component.sortListByProperty('name');
     let result = component.myShoppingCard.getLength();
     expect(result).toBeGreaterThan(0);
   });
