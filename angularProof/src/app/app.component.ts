@@ -12,6 +12,7 @@ import { IShoppingCart, Item } from 'src/shared/interfaces/Item';
 export class AppComponent {
   myShoppingCard: IShoppingCart;
   shoppingCardForm: FormGroup;
+  isCompleted = StatusEnum.IsCompleted;
 
   constructor(private fb: FormBuilder) {
     this.myShoppingCard = new ShoppingCart();
